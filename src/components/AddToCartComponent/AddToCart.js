@@ -1,8 +1,8 @@
 function AddToCartComponent() {
     return (
       <div>
-        <h2>Display Component</h2>
-        <p>This is the content for the Display Component.</p>
+        <h2>AddToCartComponent Component</h2>
+        <p>This is the content for the Add to cart.</p>
       </div>
     )
   }
