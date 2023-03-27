@@ -1,9 +1,15 @@
+import Product from "./Product"
+import productsData from "../../data/sample-devices.json"
+
 function DisplayComponent() {
     return (
-      <div>
-        <h2>Display Component</h2>
-        <p>This is the content for the Display Component.</p>
-      </div>
+      <div className="display-container">
+      {productsData.map((product) => (
+        <div className="product-container">
+        <Product key={product.Name} product={product} />
+        </div>
+      ))}
+    </div>
     )
   }
   

@@ -2,6 +2,8 @@ import DisplayComponent from '../components/DisplayComponent/Display'
 import ServicesComponent from '../components/ServicesComponent/Services'
 import AddToCartComponent from '../components/AddToCartComponent/AddToCart'
 import { useState } from 'react';
+import { Icon } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 function HomePage() {
 
@@ -30,12 +32,17 @@ function HomePage() {
 
   
   return (
-    <div>
-      <h1>My Page</h1>
-      <button onClick={() => handleButtonClick('display')}>Display</button>
-      <button onClick={() => handleButtonClick('services')}>Services</button>
-      <button onClick={() => handleButtonClick('add-to-cart')}>Add to Cart</button>
+    <div className='div-services'>
+      <div className='btn-services-container'>
+        <button className='btn-services' onClick={() => handleButtonClick('display')}>Display</button>
+        <button className='btn-services' onClick={() => handleButtonClick('services')}>Services</button>
+        <Icon className='btn-services' onClick={() => handleButtonClick('add-to-cart')} >
+          <ShoppingCartIcon />
+        </Icon>
+      </div>
+      <div className='content-container'>
       {content}
+      </div>
     </div>
   );
   
