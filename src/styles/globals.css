@@ -106,47 +106,21 @@ a {
   }
 }
 
-/* css for home page */
-.div-services {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* display css */
+.display-container {
+  padding: 5px;
 }
-
-.content-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.btn-services{
-  background-color: blue;
-  margin-right: 10px;
-}
-
-.btn-services:hover {
-  background-color: lightblue;
-  color: black;
-}
-
 
 .btn-services-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 20px;
+  margin-top: 50px;
+  margin-left: 50px;
 }
 
-/* css for display component */
-.display-container{
+/* .display-box{
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  overflow-x: scroll;
-}
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+  padding: 5px;
+} */
 
-.product-container{
-  margin: 10px;
-}

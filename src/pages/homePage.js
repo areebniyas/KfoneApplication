@@ -4,6 +4,9 @@ import AddToCartComponent from '../components/AddToCartComponent/AddToCart'
 import { useState } from 'react';
 import { Icon } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 function HomePage() {
 
@@ -12,6 +15,14 @@ function HomePage() {
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
   };
+
+  const buttons = [
+    <Button className='btn-services' onClick={() => handleButtonClick('display')}>Display</Button>,
+    <Button className='btn-services' onClick={() => handleButtonClick('services')}>Services</Button>,
+    <Button className='btn-services' onClick={() => handleButtonClick('add-to-cart')} >
+      <Icon className='icon-services'> <ShoppingCartIcon /> </Icon>
+    </Button>,
+  ];
 
   let content = null;
 
@@ -34,11 +45,9 @@ function HomePage() {
   return (
     <div className='div-services'>
       <div className='btn-services-container'>
-        <button className='btn-services' onClick={() => handleButtonClick('display')}>Display</button>
-        <button className='btn-services' onClick={() => handleButtonClick('services')}>Services</button>
-        <Icon className='btn-services' onClick={() => handleButtonClick('add-to-cart')} >
-          <ShoppingCartIcon />
-        </Icon>
+      <ButtonGroup aria-label="medium secondary button group">
+        {buttons}
+      </ButtonGroup>
       </div>
       <div className='content-container'>
       {content}
