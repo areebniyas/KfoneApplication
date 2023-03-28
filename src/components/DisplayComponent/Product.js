@@ -7,12 +7,11 @@ import {
   CardActions,
 } from "@mui/material";
 import Button from "@mui/material/Button";
-// import image from '/images/phone-img.png';
-// import Box from '@mui/material/Box';
 import Fab from "@mui/material/Fab";
-// import AddIcon from '@mui/icons-material/Add';
-// import EditIcon from '@mui/icons-material/Edit';
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { padding } from "@mui/system";
 
 function Product({ product }) {
   return (
@@ -30,7 +29,7 @@ function Product({ product }) {
           justifyContent: "space-between",
         }}
       >
-        <div>
+        <div style={{width:'95%'}}>
           <Typography variant="h6" sx={{ marginBottom: 1 }}>
             {product.Name}
           </Typography>
@@ -40,12 +39,18 @@ function Product({ product }) {
           <Typography variant="subtitle1" sx={{ overflow: 'hidden', marginBottom: 1, maxWidth: '300px', whiteSpace: 'nowrap'}}>
             {product.Description}
           </Typography>
-          <Typography variant="h5" sx={{ marginBottom: 1 }}>
+          <Typography variant="h5" sx={{ marginBottom: 3 }}>
             {product.Manufacturer}
           </Typography>
           <CardActions>
-            <Fab disabled aria-label="like">
+            {/* <Fab aria-label="like">
               <FavoriteIcon />
+            </Fab> */}
+            <Fab aria-label="add-to-cart" style={{marginRight:'125px'}}>
+              <FavoriteBorderIcon/>
+            </Fab>
+            <Fab aria-label="add-to-cart">
+              <AddShoppingCartIcon />
             </Fab>
           </CardActions>
         </div>
