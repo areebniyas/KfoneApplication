@@ -14,6 +14,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { padding } from "@mui/system";
 
 function Product({ product }) {
+  const addToCart = () => {
+    console.log("Added to cart");
+  };
   return (
     <Card sx={{ width: 300, height: 600, position:'relative' }}>
       <CardMedia
@@ -46,10 +49,10 @@ function Product({ product }) {
             {/* <Fab aria-label="like">
               <FavoriteIcon />
             </Fab> */}
-            <Fab aria-label="add-to-cart" style={{marginRight:'125px'}}>
+            <Fab aria-label="like" style={{marginRight:'125px'}}>
               <FavoriteBorderIcon/>
             </Fab>
-            <Fab aria-label="add-to-cart">
+            <Fab aria-label="add-to-cart" onClick={addToCart}>
               <AddShoppingCartIcon />
             </Fab>
           </CardActions>

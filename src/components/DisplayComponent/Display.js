@@ -9,8 +9,9 @@ function DisplayComponent() {
       <Box className='display-box' sx={{ margin:'50px', display: 'flex', overflowX: 'scroll', scrollBehavior: 'smooth' }}>
           {/* <Grid container spacing={2}> */}
           {productsData.map((product) => (
-            <Box sx={{ minWidth: 300, maxWidth: 300, marginRight: 2 }}>
-              <Product key={product.Name} product={product} />
+            // console.log("product:", product.Name),
+            <Box key={product.Name} sx={{ minWidth: 300, maxWidth: 300, marginRight: 2 }}>
+              <Product product={product} />
             </Box>
           ))}
           {/* </Grid> */}
