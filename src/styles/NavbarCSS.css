@@ -41,6 +41,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 50px;
+  background-color: #4164d5;
   height: 50px;
+  width: 50px;
 }

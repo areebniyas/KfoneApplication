@@ -106,50 +106,11 @@ a {
   }
 }
 
-/* display css */
+ /* display css */
 .display-container {
   padding: 5px;}
-/* css for home page */
-.div-services {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.content-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.btn-services{
-  background-color: rgb(18, 18, 18);
-  margin-right: 10px;
-  border-radius: 20px;
-  padding: 10px 20px;
-}
-
-.btn-services:hover {
-  color: rgb(75, 75, 75);
-  opacity: 0.8;
-}
 
 .btn-services-container{
-  background-color: #060606;
-  margin-right: 10px;
-  border-radius: 20px;
-  padding: 10px 20px;
   margin-top: 50px;
   margin-left: 50px;
 }
-
-/* .display-box{
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  width: 100%;
-  padding: 5px;
-} */
-

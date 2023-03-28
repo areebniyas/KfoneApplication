@@ -13,8 +13,8 @@ export default function App({ Component, pageProps }) {
   return (
     <>
     <Navbar isAuthenticated={isAuthenticated} />
-    <HomePage/>
-    <Footer/>
+    {/* <HomePage/> */}
+    {/* <Footer/> */ }
     <Component {...pageProps} />
     </>
   )
