@@ -12,9 +12,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import users from "../../data/dummy_users.json";
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 
-
-function Product({ product, isLoggedIn }) {
+function CartProduct({ product, isLoggedIn }) {
   const addToCart = () => {
     const user = users[0];
     user.cart.push(product.Name);
@@ -65,8 +65,8 @@ function Product({ product, isLoggedIn }) {
               <Fab aria-label="like" style={{ marginRight: "125px" }}>
                 <FavoriteBorderIcon />
               </Fab>
-              <Fab aria-label="add-to-cart" onClick={addToCart}>
-                <AddShoppingCartIcon />
+              <Fab aria-label="buy">
+                <LocalMallIcon />
               </Fab>
             </CardActions>
           )}
@@ -76,4 +76,4 @@ function Product({ product, isLoggedIn }) {
   );
 }
 
-export default Product;
+export default CartProduct;
