@@ -13,6 +13,8 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import users from "../../data/dummy_users.json";
 import LocalMallIcon from '@mui/icons-material/LocalMall';
+import Payment from "./Payment";
+import Link from 'next/link';
 
 function CartProduct({ product, isLoggedIn }) {
   const addToCart = () => {
@@ -65,8 +67,8 @@ function CartProduct({ product, isLoggedIn }) {
               <Fab aria-label="like" style={{ marginRight: "125px" }}>
                 <FavoriteBorderIcon />
               </Fab>
-              <Fab aria-label="buy">
-                <LocalMallIcon />
+              <Fab aria-label="buy" >
+                <LocalMallIcon onClick={Payment}/>
               </Fab>
             </CardActions>
           )}
