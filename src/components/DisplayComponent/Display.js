@@ -11,7 +11,7 @@ function DisplayComponent() {
           {productsData.map((product) => (
             // console.log("product:", product.Name),
             <Box key={product.Name} sx={{ minWidth: 300, maxWidth: 300, marginRight: 2 }}>
-              <Product product={product} />
+              <Product product={product} isLoggedIn={true} />
             </Box>
           ))}
           {/* </Grid> */}

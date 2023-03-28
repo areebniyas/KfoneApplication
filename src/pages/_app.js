@@ -14,8 +14,8 @@ export default function App({ Component, pageProps }) {
     <>
     <Navbar isAuthenticated={isAuthenticated} />
     {/* <HomePage/> */}
-    {/* <Footer/> */ }
     <Component {...pageProps} />
+    <Footer/>
     </>
   )
 }
