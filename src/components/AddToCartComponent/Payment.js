@@ -4,13 +4,14 @@ function PaymentPage() {
   const [address, setAddress] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('creditCard');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   
   const handleSubmit = async (event) => {
     event.preventDefault();
     
     const response = await fetch('/api/payments', {
       method: 'POST',
-      body: JSON.stringify({ address, paymentMethod, email }),
+      body: JSON.stringify({ address, paymentMethod, email, phone }),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -24,7 +25,7 @@ function PaymentPage() {
   }
   
   return (
-    <div>
+    <div className='payment-page'>
       <h1>Payment Information</h1>
       <br></br>
       <form onSubmit={handleSubmit}>
@@ -32,12 +33,17 @@ function PaymentPage() {
           Address:
           <input type="text" name="address" value={address} onChange={(event) => setAddress(event.target.value)} />
         </label>
-        <br></br><br></br>
+        <br></br>
         <label>
           Email:
           <input type="text" name="email" value={email} onChange={(event) => setEmail(event.target.value)} />
         </label>
-        <br></br><br></br>
+        <br></br>
+        <label>
+          Phone Number:
+          <input type="text" name="phonr" value={phone} onChange={(event) => setPhone(event.target.value)} />
+        </label>
+        <br></br>
         <label>
           Payment Method:
           <select name="paymentMethod" value={paymentMethod} onChange={(event) => setPaymentMethod(event.target.value)}>
@@ -46,7 +52,7 @@ function PaymentPage() {
             <option value="cod">Cash On Delivery</option>
           </select>
         </label>
-        <br></br><br></br>
+        <br></br>
         <button type="submit">Pay Now</button>
       </form>
     </div>
