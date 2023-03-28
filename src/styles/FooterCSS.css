@@ -1,0 +1,34 @@
+.footer {
+  background-color: #060606;
+  padding: 20px 0;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks li {
+  margin-right: 20px;
+}
+
+.navLinks div {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.copyRight {
+  margin: 0;
+  font-size: 14px;
+  color: #ffffff;
+}

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import logo from 'public/logo.svg';
 
 const Navbar = () => {
   return (
@@ -25,6 +26,9 @@ const Navbar = () => {
             <div><AccountCircleIcon/></div>
           </Link>
         </li>
+        
+        <img src={logo} alt='Logo' className='logo'/>
+        
       </ul>
     </nav>
   )

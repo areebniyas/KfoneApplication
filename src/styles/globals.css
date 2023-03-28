@@ -122,17 +122,23 @@ a {
 }
 
 .btn-services{
-  background-color: blue;
+  background-color: rgb(18, 18, 18);
   margin-right: 10px;
+  border-radius: 20px;
+  padding: 10px 20px;
 }
 
 .btn-services:hover {
-  background-color: lightblue;
-  color: black;
+  color: rgb(75, 75, 75);
+  opacity: 0.8;
 }
 
 
 .btn-services-container{
+  background-color: #060606;
+  margin-right: 10px;
+  border-radius: 20px;
+  padding: 10px 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;

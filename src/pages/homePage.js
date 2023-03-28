@@ -36,7 +36,7 @@ function HomePage() {
       <div className='btn-services-container'>
         <button className='btn-services' onClick={() => handleButtonClick('display')}>Display</button>
         <button className='btn-services' onClick={() => handleButtonClick('services')}>Services</button>
-        <Icon className='btn-services' onClick={() => handleButtonClick('add-to-cart')} >
+        <Icon className='btn-service' onClick={() => handleButtonClick('add-to-cart')} >
           <ShoppingCartIcon />
         </Icon>
       </div>
