@@ -11,7 +11,6 @@ import Fab from "@mui/material/Fab";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { padding } from "@mui/system";
 
 function ServiceProduct({ product }) {
   return (

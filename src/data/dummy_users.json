@@ -1,0 +1,19 @@
+[
+    {
+        "id": 1,
+        "name": "John",
+        "age": 30,
+        "address": "New York",
+        "salary": 50000,
+        "cart" : []
+    },
+    {
+        "id": 2,
+        "name": "Peter",
+        "age": 40,
+        "address": "London",
+        "salary": 80000,
+        "cart" : []
+    }
+
+]

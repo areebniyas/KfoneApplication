@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   CardMedia,
@@ -12,28 +12,17 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import users from "../../data/dummy_users.json";
-import CheckIcon from "@mui/icons-material/Check";
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 
-
-function Product({ product, isLoggedIn }) {
-  // TODO : 
-  // Add to cart for
-  // a logged in user
-  const alreadyInCart = false;
-  const [addedToCart, setAddedToCart] = useState(alreadyInCart);
-
+function CartProduct({ product, isLoggedIn }) {
   const addToCart = () => {
     const user = users[0];
-    // Add the product to the user's cart
-    localStorage.setItem("user", JSON.stringify(user));
-    
     user.cart.push(product.Name);
     // Convert the updated data to a JSON string
     const updatedUser = JSON.stringify(user);
     // Save the updated data back to localStorage
     localStorage.setItem("user", updatedUser);
     console.log("user:", user);
-    setAddedToCart(true);
   };
   return (
     <Card sx={{ width: 300, height: 600, position: "relative" }}>
@@ -76,12 +65,8 @@ function Product({ product, isLoggedIn }) {
               <Fab aria-label="like" style={{ marginRight: "125px" }}>
                 <FavoriteBorderIcon />
               </Fab>
-              <Fab aria-label="add-to-cart" onClick={addToCart}>
-                {addedToCart ? (
-                  <CheckIcon />
-                ) : (
-                  <AddShoppingCartIcon />
-                )}
+              <Fab aria-label="buy">
+                <LocalMallIcon />
               </Fab>
             </CardActions>
           )}
@@ -91,4 +76,4 @@ function Product({ product, isLoggedIn }) {
   );
 }
 
-export default Product;
+export default CartProduct;

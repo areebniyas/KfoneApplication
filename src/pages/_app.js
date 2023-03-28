@@ -1,21 +1,25 @@
 import HomePage from './homePage';
-import Navbar from '@/components/NavbarComponent/Navbar';
-import Footer from '@/components/FooterComponent/Footer';
-import '@/styles/globals.css'
-import '@/styles/NavbarCSS.css'
-import '@/styles/FooterCSS.css'
-
+// import Navbar from '../components/NavbarComponent/Navbar';
+// import Footer from '../components/FooterComponent/Footer';
+import Navbar from '../components/NavbarComponent/Navbar';
+import Footer from '../components/FooterComponent/Footer';
+import { SessionProvider } from "next-auth/react"
+import '../styles/globals.css'
+import '../styles/NavbarCSS.css'
+import '../styles/FooterCSS.css'
 
 export default function App({ Component, pageProps }) {
 
-  const isAuthenticated = true; // or false, depending on the user's authentication status
+  const isAuthenticated = false; // or false, depending on the user's authentication status
   
   return (
     <>
-    <Navbar isAuthenticated={isAuthenticated} />
+    <SessionProvider session={pageProps?.session}>
+      <Navbar isAuthenticated={isAuthenticated} />
     {/* <HomePage/> */}
-    {/* <Footer/> */ }
-    <Component {...pageProps} />
+      <Component {...pageProps} />
+      <Footer/>
+    </SessionProvider>
     </>
   )
 }
