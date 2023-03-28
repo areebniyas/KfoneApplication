@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "Dialog Sim Card",
+    "Price": 50,
+    "Description": "Dialog prepaid sim card with free data",
+    "Manufacturer": "Dialog"
+  },
+  {
+    "Name": "Mobitel Sim card",
+    "Price": 50,
+    "Description": "Mobitel postpaid sim card with free data",
+    "Manufacturer": "Mobitel"
+  },
+  {
+    "Name": "Data Upgarde",
+    "Price": "100 per GB",
+    "Description": "Increase the data package",
+    "Manufacturer": "Any Provider"
+  }
+]
