@@ -106,6 +106,9 @@ a {
   }
 }
 
+/* display css */
+.display-container {
+  padding: 5px;
 /* css for home page */
 .div-services {
   display: flex;
@@ -133,26 +136,20 @@ a {
   opacity: 0.8;
 }
 
-
 .btn-services-container{
   background-color: #060606;
   margin-right: 10px;
   border-radius: 20px;
   padding: 10px 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 20px;
+  margin-top: 50px;
+  margin-left: 50px;
 }
 
-/* css for display component */
-.display-container{
+/* .display-box{
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  overflow-x: scroll;
-}
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+  padding: 5px;
+} */
 
-.product-container{
-  margin: 10px;
-}

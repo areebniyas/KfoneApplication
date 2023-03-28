@@ -1,24 +1,62 @@
-import React from 'react';
-import { Card, CardMedia, CardContent, Typography } from '@mui/material';
-import image from '../../data/phone-img.png'
+import React from "react";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  CardActions,
+} from "@mui/material";
+import Button from "@mui/material/Button";
+import Fab from "@mui/material/Fab";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { padding } from "@mui/system";
 
-function Product({ product }){
+function Product({ product }) {
   return (
-    <Card sx={{ maxWidth:300, maxHeight:400}}>
+    <Card sx={{ width: 300, height: 600, position:'relative' }}>
       <CardMedia
         component="img"
-        height="100"
-        image={image}
+        image="/images/default-img.jpeg"
+        height="300"
         alt={product.Name}
       />
-      <CardContent>
-        <Typography variant="h6">{product.Name}</Typography>
-        <Typography variant="h5">${product.Price}</Typography>
-        <Typography variant="subtitle1">{product.Description}</Typography>
-        <Typography variant="h5">{product.Manufacturer}</Typography>
+      <CardContent
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <div style={{width:'95%'}}>
+          <Typography variant="h6" sx={{ marginBottom: 1 }}>
+            {product.Name}
+          </Typography>
+          <Typography variant="h5" sx={{ marginBottom: 1 }}>
+            ${product.Price}
+          </Typography>
+          <Typography variant="subtitle1" sx={{ overflow: 'hidden', marginBottom: 1, maxWidth: '300px', whiteSpace: 'nowrap'}}>
+            {product.Description}
+          </Typography>
+          <Typography variant="h5" sx={{ marginBottom: 3 }}>
+            {product.Manufacturer}
+          </Typography>
+          <CardActions>
+            {/* <Fab aria-label="like">
+              <FavoriteIcon />
+            </Fab> */}
+            <Fab aria-label="add-to-cart" style={{marginRight:'125px'}}>
+              <FavoriteBorderIcon/>
+            </Fab>
+            <Fab aria-label="add-to-cart">
+              <AddShoppingCartIcon />
+            </Fab>
+          </CardActions>
+        </div>
       </CardContent>
     </Card>
   );
-};
+}
 
 export default Product;
