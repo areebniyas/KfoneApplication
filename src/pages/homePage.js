@@ -48,11 +48,11 @@ function HomePage() {
       <ButtonGroup aria-label="medium secondary button group">
         {buttons}
       </ButtonGroup>
-        <button className='btn-services' onClick={() => handleButtonClick('display')}>Display</button>
+        {/* <button className='btn-services' onClick={() => handleButtonClick('display')}>Display</button>
         <button className='btn-services' onClick={() => handleButtonClick('services')}>Services</button>
         <Icon className='btn-service' onClick={() => handleButtonClick('add-to-cart')} >
           <ShoppingCartIcon />
-        </Icon>
+        </Icon> */}
       </div>
       <div className='content-container'>
       {content}
