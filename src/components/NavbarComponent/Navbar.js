@@ -2,6 +2,9 @@ import { useSession, getSession, signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Image from 'next/image';
+import SendIcon from '@mui/icons-material/Send';
+import { Button } from '@mui/material';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const Navbar = () => {
   const { data: session, status } = useSession()
@@ -11,32 +14,23 @@ const Navbar = () => {
       <nav className='navbar'>
         <ul className='navbar-links'>
         <Image src='/logo.svg' alt="Logo" className='logo' width={104} height={168}/>
-          <li>
             {
               session ? 
               (
-                <button
-                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                  aria-label="Sign out"
-                  title="Sign out"
-                  onClick={() => signOut({ callbackUrl: "http://localhost:3000/" })}
-                >
+                <div style={{marginLeft:'10px'}}>
+                <Button variant="outlined" endIcon={<ExitToAppIcon/>} onClick={() => signOut({ callbackUrl: "http://localhost:3000/" })}>
                   Sign Out
-                </button>
+               </Button>
+               </div>
               ) :
               (
-                <button
-                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                  aria-label="Sign up"
-                  title="Sign up"
-                  onClick={() => signIn("asgardeo", { callbackUrl: "http://localhost:3000/" })}
-                >
+                <div style={{marginLeft:'10px'}}>
+                <Button variant="outlined" endIcon={<SendIcon />} onClick={() => signIn("asgardeo", { callbackUrl: "http://localhost:3000/" })}>
                   Sign In
-                </button>
+               </Button>
+               </div>
               )
             }
-          </li>
-          
         </ul>
       </nav>
     ) : (
