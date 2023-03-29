@@ -2,7 +2,6 @@ const { connectToDatabase } = require('../../lib/mongodb');
 
 export default async (req, res) => {
     try {
-        let userId  = req.query.userId
         
         // connect to the database
         let { db } = await connectToDatabase();
@@ -17,7 +16,7 @@ export default async (req, res) => {
                  // fetch the posts
                  let services = await db
                     .collection('users')
-                    .find({ id: parseInt(userId) })
+                    .find({  })
                     .sort({ published: -1 })
                     .toArray();
                 // return the posts
@@ -26,6 +25,18 @@ export default async (req, res) => {
                     success: true,
                 });
                 break;
+            case "PUT":
+                let sub = req.query.sub;
+                let field = req.query.field;
+                let value = req.body;
+                var obj = {};
+                obj[field] = value;
+
+                const result = await db 
+                    .collection('users')
+                    .updateOne({ sub: sub },{ $set:  obj  });
+                
+                  res.status(200).json({ message: 'Update successful' });
         }
 
        return res.json;
