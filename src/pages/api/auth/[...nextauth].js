@@ -1,4 +1,5 @@
 import NextAuth from "next-auth"
+import jwt_decode from "jwt-decode";
 
 export default NextAuth({
     providers: [
@@ -10,7 +11,7 @@ export default NextAuth({
         clientSecret: process.env.ASGARDEO_CLIENT_SECRET,
         wellKnown: "https://api.asgardeo.io/t/" + process.env.ASGARDEO_ORGANIZATION_NAME + "/oauth2/token/.well-known/openid-configuration",
         authorization: {
-          params: { scope: process.env.ASGARDEO_SCOPES || "openid email profile" } 
+          params: { scope: process.env.ASGARDEO_SCOPES || "openid email profile groups" } 
         },
         idToken: true,
         checks: ["pkce", "state"],
@@ -33,8 +34,12 @@ export default NextAuth({
     },
     callbacks: {
       async session({ session, token, user }) {
+        // add jwt decode for access token
+        const decodedAccessToken = jwt_decode(token.accessToken)
+
         session.accessToken = token.accessToken
         session.idToken = token.idToken
+        session.user.sub = decodedAccessToken.sub
         return session
       },
       async jwt({ token, user, account, profile, isNewUser }) {

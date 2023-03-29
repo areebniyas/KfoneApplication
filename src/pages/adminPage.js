@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import ServicesComponent from '../components/ServicesComponent/Services'
@@ -6,6 +7,8 @@ import AdminDisplayComponent from '../components/DisplayComponent/AdminDisplayCo
 
 function AdminPage() {
     const [activeButton, setActiveButton] = useState('display');
+    const { data: session, status } = useSession()
+    const {isAdmin, setIsAdmin} = useState();
 
     const handleButtonClick = (buttonName) => {
         setActiveButton(buttonName);
@@ -33,7 +36,21 @@ function AdminPage() {
             content = null;
     }
 
+    useEffect(() => {
+    
+        async function checkUser(){
+          const response = await fetch('http://localhost:3000/api/userInfo');
+          const json = await response.json();
+          console.log("JSON here " + JSON.stringify(json))
+          return JSON.stringify(json);
+        }
+    
+        const userDetails = checkUser();
+        console.log(userDetails);
+      }, []); 
+
     return (
+        isAdmin ? (
         <div className='div-services' style={{display:'flex', flexDirection:'row'}}>
             <div className='btn-services-container'>
             <ButtonGroup aria-label="medium secondary button group" style={{display:'flex', flexDirection:'column'}}>
@@ -49,7 +66,9 @@ function AdminPage() {
             {content}
             </div>
         </div>
-    );
+        ) : (
+            <div>You need admin privileges to view this page</div>
+    ));
 }
 
 export default AdminPage;
