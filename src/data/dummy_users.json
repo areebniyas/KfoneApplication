@@ -5,14 +5,29 @@
         "age": 30,
         "address": "New York",
         "salary": 50000,
-        "cart" : []
+        "points": 159,
+        "cart" : [],
+        "favourites": [],
+        "purchases": []
     },
     {
         "id": 2,
+        "sub": "dd07fb53-013d-45a7-82c8-abecdc3d634d",
+        "given_name": "intern",
+        "family_name": "team1",
+        "username": "intermteam1@gmail.com",
+        "points": 159,
+        "cart" : [],
+        "favourites": [],
+        "purchases": []
+    },
+    {
+        "id": 3,
         "name": "Peter",
         "age": 40,
         "address": "London",
         "salary": 80000,
+        "points": 590,
         "cart" : []
     }
 
