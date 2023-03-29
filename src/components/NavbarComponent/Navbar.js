@@ -11,6 +11,7 @@ const Navbar = () => {
   const { data: session, status } = useSession()
   const [id_token, setIDToken] = useState()
   const user = null;
+  const [userName, setUserName] = useState()
 
   useEffect(() => {
     if (session) {
@@ -29,6 +30,7 @@ const Navbar = () => {
           .then(res => {
             console.log(res)
             console.log(res.body["sub"])
+            setUserName(res.body["email"])
               // setContent(res)
           }).catch(err => {
               signOut({ callbackUrl: "/" })
@@ -36,7 +38,6 @@ const Navbar = () => {
   }
   
   }, [])
-
   return (
     !user ? (
       <nav className='navbar'>
@@ -49,6 +50,7 @@ const Navbar = () => {
                 <Button variant="outlined" endIcon={<ExitToAppIcon/>} onClick={() => signOut({ callbackUrl: "http://localhost:3000/" })}>
                   Sign Out
                </Button>
+               <div><li>{userName}</li></div>
                </div>
               ) :
               (

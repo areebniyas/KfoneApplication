@@ -21,10 +21,11 @@
 }
 
 .navbar-links li {
-  margin-left: 20px;
+  margin-left: 450px;
   background-color: rgb(28, 28, 28);
   border-radius: 20px;
   padding: 10px 20px;
+  margin-top: -40px;
 }
 
 .navbar-links li div {
@@ -44,4 +45,10 @@
   background-color: #4164d5;
   height: 50px;
   width: 50px;
+}
+
+.navbar-links div Button{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
 }
