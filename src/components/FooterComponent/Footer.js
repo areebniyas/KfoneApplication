@@ -23,7 +23,7 @@ const Footer = () => {
             </li>
           </ul>
         </nav>
-        <p className="copyRight">© 2023 Your Company. All Rights Reserved.</p>
+        <p className="copyRight">© 2023 Kfone LK. All Rights Reserved.</p>
       </div>
     </footer>
   );

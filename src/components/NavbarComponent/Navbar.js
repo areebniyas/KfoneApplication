@@ -31,6 +31,8 @@ const Navbar = () => {
             console.log(res)
             console.log(res.body["sub"])
             setUserName(res.body["email"])
+            toString(localStorage.setItem("userName", userName));
+            
               // setContent(res)
           }).catch(err => {
               signOut({ callbackUrl: "/" })
