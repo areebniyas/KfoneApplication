@@ -11,6 +11,7 @@ function DisplayComponent() {
     async function fetchData() {
       const response = await fetch('http://localhost:3000/api/devices');
       const json = await response.json();
+      console.log("json:", json)
       setData(json);
     }
 
@@ -22,8 +23,7 @@ function DisplayComponent() {
       <Box className='display-box' sx={{ margin:'50px', display: 'flex', overflowX: 'scroll', scrollBehavior: 'smooth' }}>
           {/* <Grid container spacing={2}> */}
           {data.message.map((product) => (
-            // console.log("product:", product.Name),
-            <Box key={product.Name} sx={{ minWidth: 300, maxWidth: 300, marginRight: 2 }}>
+            <Box key={product._id} sx={{ minWidth: 300, maxWidth: 300, marginRight: 2 }}>
               <Product product={product} isLoggedIn={true} />
             </Box>
           ))}
