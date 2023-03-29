@@ -1,5 +1,6 @@
 import { useSession, getSession, signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Image from 'next/image';
 import SendIcon from '@mui/icons-material/Send';
@@ -8,7 +9,34 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const Navbar = () => {
   const { data: session, status } = useSession()
+  const [id_token, setIDToken] = useState()
   const user = null;
+
+  useEffect(() => {
+    if (session) {
+      setIDToken(session.idToken)
+      console.log(session.idToken)
+      localStorage.setItem("access-token", session.accessToken);
+      console.log(localStorage.getItem("access-token"))
+  
+  
+      const res = fetch("https://api.asgardeo.io/t/areeb/oauth2/userinfo", {
+          method: 'get',
+          headers: new Headers({
+              "authorization": "Bearer " + session.accessToken
+          })
+      }).then(r => r.json().then(data => ({ status: r.status, body: data })))
+          .then(res => {
+            console.log(res)
+            console.log(res.body["sub"])
+              // setContent(res)
+          }).catch(err => {
+              signOut({ callbackUrl: "/" })
+          })  
+  }
+  
+  }, [])
+
   return (
     !user ? (
       <nav className='navbar'>
