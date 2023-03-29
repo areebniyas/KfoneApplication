@@ -29,7 +29,10 @@ const Navbar = () => {
       }).then(r => r.json().then(data => ({ status: r.status, body: data })))
           .then(res => {
             console.log(res)
-            console.log(res.body["sub"])
+            console.log("SESSION USER SUB" + session.user.sub)
+            if(res.body["groups"].includes("admin")) {
+              console.log("YESSSSSSSSSSSSSSSSSSSSSS")
+            }
             setUserName(res.body["email"])
             toString(localStorage.setItem("userName", userName));
             

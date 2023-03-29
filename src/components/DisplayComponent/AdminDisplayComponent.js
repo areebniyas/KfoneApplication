@@ -31,7 +31,7 @@ function AdminDisplayComponent() {
 
   if (!data) return null;
   return (
-    <div style={{marginLeft:"100px"}}>
+    <div style={{marginLeft:"100px", marginTop:'40px'}}>
     <TextField id="outlined-search" label="Search field" type="search" />
     <Button className='btn-services' style={{marginLeft:'20px'}}>Add Device</Button>
     <List
@@ -39,7 +39,7 @@ function AdminDisplayComponent() {
         width: "100%",
         maxWidth: 400,
         bgcolor: "grey",
-        marginTop: "50px",
+        marginTop: "40px",
       }}
     >
      
