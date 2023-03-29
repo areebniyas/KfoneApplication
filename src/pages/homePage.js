@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { Icon } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
 function HomePage() {
