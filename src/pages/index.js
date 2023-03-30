@@ -41,6 +41,7 @@ export default function Home() {
           given_name: userDetails.data["given_name"],
           cart: [],
           favourites: [],
+          purchases: [],
           points: 0,
         }),
       });
@@ -113,11 +114,9 @@ export default function Home() {
   return (
     <div className="div-services">
       <div className="btn-services-container">
-        {session &&
         <ButtonGroup aria-label="medium secondary button group">
           {buttons}
         </ButtonGroup>
-      }
       </div>
       <div className="content-container">{content}</div>
     </div>

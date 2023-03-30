@@ -40,6 +40,9 @@ const Navbar = () => {
         const json = await response.json();
         
         if (json) {
+          if(!json.message[0]["points"]){
+            setPoints(0)
+          }
           setPoints(json.message[0]["points"])
           
         }
