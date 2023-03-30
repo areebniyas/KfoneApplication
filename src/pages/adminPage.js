@@ -7,37 +7,25 @@ import AdminDisplayComponent from '../components/DisplayComponent/AdminDisplayCo
 import AdminOnlyPage from '../components/DisplayComponent/AdminOnlyPage';
 
 function AdminPage() {
-    const [activeButton, setActiveButton] = useState('display');
     const { data: session, status } = useSession()
-    const [isAdmin, setIsAdmin] = useState(true);
-
-    const handleButtonClick = (buttonName) => {
-        setActiveButton(buttonName);
-    };
-
-    const buttons = [
-        <Button className='btn-services' onClick={() => handleButtonClick('display')}>Display</Button>,
-        <Button className='btn-services' onClick={() => handleButtonClick('services')}>Services</Button>,
-        <Button className='btn-services' onClick={() => handleButtonClick('promotions')} >Promotions</Button>,
-    ];
-
-    let content = null;
-
-    switch (activeButton) {
-        case 'display':
-            content = <AdminDisplayComponent />;
-            break;
-        case 'services':
-            content = <ServicesComponent />;
-            break;
-        case 'promotions':
-            // content = <PromotionsComponent />;
-            break;
-        default:
-            content = null;
-    }
+    const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
+        async function checkUser(){
+            const response = await fetch('http://localhost:3000/api/userInfo');
+            const json = await response.json();
+            
+            try{
+            if(json.data["groups"].includes("admin")) {
+              setIsAdmin(true)
+            } else {
+                console.log("No groups found")
+            }
+            return JSON.stringify(json);
+            } catch (error) {
+                console.log("ERROR " + error)
+
+            }
 
         if(session){
             async function checkUser(){
@@ -53,29 +41,15 @@ function AdminPage() {
         } else {
             setIsAdmin(false);
         }
-    
-
+            const userdetails = checkUser();
+            console.log("USER DETAILS   " + userdetails);
       }, []); 
 
     return (
         isAdmin ? (
-        <div className='div-services' style={{display:'flex', flexDirection:'row'}}>
-            <div className='btn-services-container'>
-            <ButtonGroup aria-label="medium secondary button group" style={{display:'flex', flexDirection:'column'}}>
-                {buttons}
-            </ButtonGroup>
-                {/* <button className='btn-services' onClick={() => handleButtonClick('display')}>Display</button>
-                <button className='btn-services' onClick={() => handleButtonClick('services')}>Services</button>
-                <Icon className='btn-service' onClick={() => handleButtonClick('add-to-cart')} >
-                <ShoppingCartIcon />
-                </Icon> */}
-            </div>
-            <div className='content-container'>
-            {content}
-            </div>
-        </div>
+            <div>YOU ARE AN ADMIN!!!</div>
         ) : (
-            <AdminOnlyPage></AdminOnlyPage>
+            <div>You need admin privileges to view this page</div>
     ));
 }
 
