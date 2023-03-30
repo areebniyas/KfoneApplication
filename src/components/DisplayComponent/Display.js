@@ -12,9 +12,10 @@ function DisplayComponent(cart) {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('http://localhost:3000/api/devices');
+      const response = await fetch('http://localhost:3000/api/devices', {
+        method: 'GET',
+      });
       const json = await response.json();
-      console.log("json:", json)
       setData(json);
     }
 

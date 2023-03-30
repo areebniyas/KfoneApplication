@@ -14,20 +14,35 @@ const Navbar = () => {
   const user = null;
   const [userName, setUserName] = useState()
   const [loyalty, setLoyalty] = useState()
+  const [ points, setPoints] = useState()
   
 
   useEffect(() => {
     if (session) {
-      async function getUserInfo(){
-        const response = await fetch('http://localhost:3000/api/userInfo');
+
+      async function getUserInfo() {
+        const response = await fetch("http://localhost:3000/api/userInfo");
+        const json = await response.json();
+        setUserName("Hi, " + json.data.given_name)
+        return json;
+      }
+
+      async function checkPoints(){
+
+        const userDetails = await getUserInfo();
+        const sub = userDetails.data["sub"];
+
+        const response = await fetch(
+          `http://localhost:3000/api/getUser?userId=${sub}`
+        );
         const json = await response.json();
         
         if (json) {
-          console.log(json.data.username)
-          setUserName("Hi, " + json.data.given_name)
+          setPoints(json.message[0]["points"])
+          
         }
       }
-      getUserInfo();
+      checkPoints();
   }
   setLoyalty("Tier: Platinum")
 

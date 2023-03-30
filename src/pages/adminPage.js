@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import ServicesComponent from '../components/ServicesComponent/Services'
 import AdminDisplayComponent from '../components/DisplayComponent/AdminDisplayComponent';
+import AdminOnlyPage from '../components/DisplayComponent/AdminOnlyPage';
 
 function AdminPage() {
     const [activeButton, setActiveButton] = useState('display');
@@ -37,19 +38,24 @@ function AdminPage() {
     }
 
     useEffect(() => {
-    
-        async function checkUser(){
-          const response = await fetch('http://localhost:3000/api/userInfo');
-          const json = await response.json();
-          console.log("JSON here " + JSON.stringify(json))
-          if(json.data["groups"].includes("admin")) {
-            setIsAdmin(true)
-          }
-          return JSON.stringify(json);
+
+        if(session){
+            async function checkUser(){
+                const response = await fetch('http://localhost:3000/api/userInfo');
+                const json = await response.json();
+                if(json.data["groups"].includes("admin")) {
+                  setIsAdmin(true)
+                }
+                return JSON.stringify(json);
+              }
+          
+              const userDetails = checkUser();
+              console.log(userDetails);
+        } else {
+            setIsAdmin(false);
         }
     
-        const userDetails = checkUser();
-        console.log(userDetails);
+
       }, []); 
 
     return (
@@ -70,7 +76,7 @@ function AdminPage() {
             </div>
         </div>
         ) : (
-            <div>You need admin privileges to view this page</div>
+            <AdminOnlyPage></AdminOnlyPage>
     ));
 }
 
