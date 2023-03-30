@@ -7,6 +7,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { Button } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
+import SignOutButton from './SignOutButton';
 
 const Navbar = () => {
   const { data: session, status } = useSession()
@@ -40,9 +41,7 @@ const Navbar = () => {
               session ? 
               (
                 <div style={{marginLeft:'10px'}}>
-                <Button variant="outlined" endIcon={<ExitToAppIcon/>} onClick={() => signOut({ callbackUrl: "http://localhost:3000/" })}>
-                  Sign Out
-               </Button>
+                  <SignOutButton></SignOutButton>
                <div><li>{userName}</li></div>
                 <div className='loyalty'>
                   <li>{loyalty}<LoyaltyIcon className='LoyaltyIcon'/></li>
