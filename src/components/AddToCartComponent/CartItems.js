@@ -15,6 +15,7 @@ import users from "../../data/dummy_users.json";
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import Payment from "./Payment";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 function CartProduct({ product, isLoggedIn }) {
   const addToCart = () => {
@@ -26,6 +27,10 @@ function CartProduct({ product, isLoggedIn }) {
     localStorage.setItem("user", updatedUser);
     console.log("user:", user);
   };
+
+  const handleClick = () => {
+    window.open("Payment", 'width=60,height=40');
+  }
   return (
     <Card sx={{ width: 300, height: 600, position: "relative" }}>
       <CardMedia
@@ -68,7 +73,7 @@ function CartProduct({ product, isLoggedIn }) {
                 <FavoriteBorderIcon />
               </Fab>
               <Fab aria-label="buy" >
-                <LocalMallIcon onClick={Payment}/>
+                <LocalMallIcon onClick={handleClick}/>
               </Fab>
             </CardActions>
           )}

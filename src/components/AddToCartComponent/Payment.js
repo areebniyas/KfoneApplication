@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function PaymentPage() {
+function Payment() {
   const [address, setAddress] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('creditCard');
   const [email, setEmail] = useState('');
@@ -59,4 +59,4 @@ function PaymentPage() {
   );
 }
 
-export default PaymentPage;
+export default Payment;

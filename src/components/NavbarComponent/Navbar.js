@@ -6,11 +6,14 @@ import Image from 'next/image';
 import SendIcon from '@mui/icons-material/Send';
 import { Button } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 const Navbar = () => {
   const { data: session, status } = useSession()
   const user = null;
   const [userName, setUserName] = useState()
+  const [loyalty, setLoyalty] = useState()
+  
 
   useEffect(() => {
     if (session) {
@@ -25,7 +28,8 @@ const Navbar = () => {
       }
       getUserInfo();
   }
-  
+  setLoyalty("Platinum")
+
   }, [])
   return (
     !user ? (
@@ -40,6 +44,9 @@ const Navbar = () => {
                   Sign Out
                </Button>
                <div><li>{userName}</li></div>
+                <div className='loyalty'>
+                  <li>{loyalty}<LoyaltyIcon className='LoyaltyIcon'/></li>
+                </div>
                </div>
               ) :
               (
