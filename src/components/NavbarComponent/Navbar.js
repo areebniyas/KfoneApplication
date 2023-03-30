@@ -24,12 +24,12 @@ const Navbar = () => {
         
         if (json) {
           console.log(json.data.username)
-          setUserName(json.data.username)
+          setUserName("Hi, " + json.data.given_name)
         }
       }
       getUserInfo();
   }
-  setLoyalty("Platinum")
+  setLoyalty("Tier: Platinum")
 
   }, [])
   return (
