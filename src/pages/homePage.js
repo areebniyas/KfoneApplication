@@ -108,7 +108,7 @@ function HomePage() {
       content = <ServicesComponent/>;
       break;
     case "add-to-cart":
-      content = <AddToCartComponent cart={localStorage.getItem('cart')}/>;
+      content = <AddToCartComponent/>;
       break;
     default:
       content = null;
