@@ -17,19 +17,6 @@ export default async (req, res) => {
                     let myPost = await db.collection("users").insertOne(bodyObject);
                     res.json(myPost.ops[0]);
                     break;
-                case "GET":
-                     // fetch the posts
-                     let services = await db
-                        .collection('users')
-                        .find({  })
-                        .sort({ published: -1 })
-                        .toArray();
-                    // return the posts
-                    res.json({
-                        message: JSON.parse(JSON.stringify(services)),
-                        success: true,
-                    });
-                    break;
                 case "PUT":
                     let sub = req.query.sub;
                     let field = req.query.field;
