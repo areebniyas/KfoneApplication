@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardMedia,
@@ -11,8 +11,47 @@ import Fab from "@mui/material/Fab";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import users from "../../data/dummy_users.json";
+import CheckIcon from "@mui/icons-material/Check";
+import handler from "../../pages/api/userInfo";
+import { useSession } from "next-auth/react";
 
-function ServiceProduct({ product }) {
+function ServiceProduct({ product, isLoggedIn, addedToCart }) {
+  const { data: session, status } = useSession();
+  const [isAdded, setIsAdded] = useState(false);
+  const [cart, setCart] = useState([]);
+  const uid = session.user["sub"];
+
+  const checkCart = async () => {
+    const updateResponse =  await fetch(
+      `http://localhost:3000/api/getUserAttr?sub=${uid}&field=cart`
+    );
+    const updateResult = await updateResponse.json();
+    return updateResult
+    
+  }
+
+  const addToCart = async () => {
+    const cart = await checkCart();
+    const newCart = [...cart.message, product.Name]
+  
+    // Update the user data in the API
+    const updateResponse = await fetch(`http://localhost:3000/api/users?sub=${uid}&field=cart`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newCart)
+    });
+
+  
+    if (updateResponse.ok) {
+      setIsAdded(true);
+      
+    }
+    
+  };
+
   return (
     <Card sx={{ width: 300, height: 600, position:'relative' }}>
       <CardMedia
@@ -48,8 +87,8 @@ function ServiceProduct({ product }) {
             <Fab aria-label="add-to-cart" style={{marginRight:'125px'}}>
               <FavoriteBorderIcon/>
             </Fab>
-            <Fab aria-label="add-to-cart">
-              <AddShoppingCartIcon />
+            <Fab aria-label="add-to-cart" disabled={addedToCart || isAdded}  onClick={addToCart}>
+                {(addedToCart || isAdded) ? <CheckIcon /> : <AddShoppingCartIcon />}
             </Fab>
           </CardActions>
         </div>

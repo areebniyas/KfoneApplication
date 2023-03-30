@@ -2,8 +2,9 @@ import Product from "./ServiceItems"
 import { Grid } from "@mui/material"
 import { Box } from "@mui/system";
 import { useState, useEffect } from 'react';
+import CartProduct from "../AddToCartComponent/CartItems";
 
-function ServicesComponent() {
+function ServicesComponent(cart) {
 
   const [data, setData] = useState(null);
 
@@ -23,7 +24,7 @@ function ServicesComponent() {
           {/* <Grid container spacing={2}> */}
           {data.message.map((product) => (
             <Box sx={{ minWidth: 300, maxWidth: 300, marginRight: 2 }}>
-              <Product key={product.Name} product={product} />
+              <Product key={product.Name} product={product} addedToCart={cart.cart.includes(product.Name)} cart={cart} />
             </Box>
           ))}
           {/* </Grid> */}

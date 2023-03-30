@@ -22,11 +22,6 @@ function Product({ product, isLoggedIn, addedToCart}) {
   const [isAdded, setIsAdded] = useState(false);
   const [cart, setCart] = useState([]);
   const uid = session.user["sub"];
-  
-  let updateResult = ""
-  useEffect(()=>{
-    setCart[updateResult]
-  }, [updateResult])
 
   const checkCart = async () => {
     const updateResponse =  await fetch(
