@@ -14,7 +14,9 @@ const Navbar = () => {
   const user = null;
   const [userName, setUserName] = useState()
   const [loyalty, setLoyalty] = useState()
+  
   const [ points, setPoints] = useState()
+
   
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const Navbar = () => {
       }
       checkPoints();
   }
-  setLoyalty("Tier: Platinum")
+  setLoyalty("Platinum")
 
   }, [])
   return (
