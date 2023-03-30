@@ -13,28 +13,48 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import users from "../../data/dummy_users.json";
 import CheckIcon from "@mui/icons-material/Check";
+import handler from "../../pages/api/userInfo";
+import { useSession } from "next-auth/react";
 
-
-function Product({ product, isLoggedIn }) {
-  // TODO : 
+function Product({ product, isLoggedIn, addedToCart, cart }) {
+  // TODO :
   // Add to cart for
   // a logged in user
-  const alreadyInCart = false;
-  const [addedToCart, setAddedToCart] = useState(alreadyInCart);
+  const { data: session, status } = useSession();
+  const [isAdded, setIsAdded] = useState(false)
+  // console.log(cart.cart)
+  // console.log(product.Name, "...")
+  // console.log(cart.cart.includes(product.Name))
+  // if (cart.cart.includes(product.Name)){
+  //   setAddedToCart(true)
+  // }
 
-  const addToCart = () => {
-    const user = users[0];
-    // Add the product to the user's cart
-    localStorage.setItem("user", JSON.stringify(user));
-    
-    user.cart.push(product.Name);
-    // Convert the updated data to a JSON string
-    const updatedUser = JSON.stringify(user);
-    // Save the updated data back to localStorage
-    localStorage.setItem("user", updatedUser);
-    console.log("user:", user);
-    setAddedToCart(true);
+
+  const addToCart = async () => {
+    const uid = session.user["sub"];
+  
+    const newCart = [...cart.cart, product.Name]
+    console.log("user cart, ", newCart )
+    localStorage.setItem("cart", JSON.stringify(newCart))
+  
+    // Update the user data in the API
+    const updateResponse = await fetch(`http://localhost:3000/api/users?sub=${uid}&field=cart`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newCart)
+    });
+
+    // console.log("res", updateResponse)
+  
+    if (updateResponse.ok) {
+      setIsAdded(true);
+      
+    }
   };
+  
+
   return (
     <Card sx={{ width: 300, height: 600, position: "relative" }}>
       <CardMedia
@@ -76,12 +96,8 @@ function Product({ product, isLoggedIn }) {
               <Fab aria-label="like" style={{ marginRight: "125px" }}>
                 <FavoriteBorderIcon />
               </Fab>
-              <Fab aria-label="add-to-cart" onClick={addToCart}>
-                {addedToCart ? (
-                  <CheckIcon />
-                ) : (
-                  <AddShoppingCartIcon />
-                )}
+              <Fab aria-label="add-to-cart" disabled={addedToCart || isAdded}  onClick={addToCart}>
+                {(addedToCart || isAdded) ? <CheckIcon /> : <AddShoppingCartIcon />}
               </Fab>
             </CardActions>
           )}

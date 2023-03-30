@@ -3,8 +3,22 @@ import productsData from "../../data/sample-devices.json";
 import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import users from "../../data/dummy_users.json";
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 
-function AddToCartComponent() {
+function AddToCartComponent(cart) {
+  // const [session, setSession] = useSession();
+  // console.log("AddtoCartComponent, ", cart)
+
+
+  useEffect(() => {
+    // const data = fetch("http://localhost:3000/api/");
+
+    // const res = fetch("http://localhost:3000/api/getUser");
+    // const json = res.json();
+    // console.log("json:", json);
+
+  }, []);
   return (
     <Box
       className="display-box"
@@ -16,8 +30,10 @@ function AddToCartComponent() {
       }}
     >
       {/* <Grid container spacing={2}> */}
-      {users[0]["cart"].map((productName) => {
+      {JSON.parse(cart.cart).map((productName) => {
+        console.log("product name", productName)
         const product = productsData.find((p) => p.Name === productName);
+        console.log("Product", product)
         return (
           <Box
             key={product.Name}
