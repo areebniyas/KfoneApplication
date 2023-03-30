@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardMedia,
@@ -16,13 +16,68 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import Payment from "./Payment";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+// ES6 Modules or TypeScript
+import Swal from "sweetalert2";
+import { useSession } from "next-auth/react";
+
 
 function CartProduct({ product, isLoggedIn, cart }) {
-  const addToCart = () => {
-  };
+  const { data: session, status } = useSession();
+  const [alreadyBought, setAlreadyBought] = useState(false);
+  // const addToCart = () => {
+  // };
+  let uid = "";
+  if(session != null)
+  {
+    uid = session.user["sub"];
+  }
+  const Swal = require("sweetalert2");
 
-  const handleClick = () => {
-    window.open("Payment", 'width=60,height=40');
+  const getPaymemtHistory = async() => {
+    const updateResponse = await fetch(
+      `http://localhost:3000/api/getUserAttr?sub=${uid}&field=purchases`
+    );
+    const updateResult = await updateResponse.json();
+    // console.log("res", res)
+    return updateResult
+  }
+
+
+  const handleClick = async() => {
+    if (!session) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Please login to add to cart!",
+      });
+      return;
+    }
+
+    const payment = await getPaymemtHistory();
+    const newPayment = [...payment.message, product.Name];
+
+    // Update the user data in the API
+    const updateResponse = await fetch(
+      `http://localhost:3000/api/users?sub=${uid}&field=purchases`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newPayment),
+      }
+    );
+    if (updateResponse.ok) {
+      setAlreadyBought(true);
+      
+      
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: `Product added to cart!`,
+      });
+      return;
+    }
   }
   return (
     <Card sx={{ width: 300, height: 600, position: "relative" }}>
@@ -65,9 +120,10 @@ function CartProduct({ product, isLoggedIn, cart }) {
               <Fab aria-label="like" style={{ marginRight: "125px" }}>
                 <FavoriteBorderIcon />
               </Fab>
-              <Fab aria-label="buy" >
-                <LocalMallIcon onClick={handleClick}/>
-              </Fab>
+              {!alreadyBought &&
+              <Fab aria-label="buy" onClick={handleClick} >
+                <LocalMallIcon />
+              </Fab>}
             </CardActions>
           )}
         </div>
