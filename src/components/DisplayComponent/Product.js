@@ -17,53 +17,29 @@ import handler from "../../pages/api/userInfo";
 import { useSession } from "next-auth/react";
 
 function Product({ product, isLoggedIn, addedToCart}) {
-  // TODO :
-  // Add to cart for
-  // a logged in user
+
   const { data: session, status } = useSession();
   const [isAdded, setIsAdded] = useState(false);
   const [cart, setCart] = useState([]);
-  // const []
   const uid = session.user["sub"];
-  // const [updateResult, setUpdateResult] = useState()
-  
-  
-  // console.log(cart.cart)
-  // console.log(product.Name, "...")
-  // console.log(cart.cart.includes(product.Name))
-  // if (cart.cart.includes(product.Name)){
-  //   setAddedToCart(true)
-  // }
   
   let updateResult = ""
   useEffect(()=>{
     setCart[updateResult]
-    console.log("updating...")
-    console.log(cart)
   }, [updateResult])
 
   const checkCart = async () => {
     const updateResponse =  await fetch(
       `http://localhost:3000/api/getUserAttr?sub=${uid}&field=cart`
     );
-
-    console.log("await", updateResponse);
     const updateResult = await updateResponse.json();
-    // setCart(updateResult)
-    // console.log(cart);
     return updateResult
-    console.log("update check", updateResult)
     
   }
 
   const addToCart = async () => {
     const cart = await checkCart();
-    console.log("the cart", cart)
     const newCart = [...cart.message, product.Name]
-    
-  
-    
-    // localStorage.setItem("cart", JSON.stringify(newCart))
   
     // Update the user data in the API
     const updateResponse = await fetch(`http://localhost:3000/api/users?sub=${uid}&field=cart`, {
@@ -74,7 +50,6 @@ function Product({ product, isLoggedIn, addedToCart}) {
       body: JSON.stringify(newCart)
     });
 
-    // console.log("res", updateResponse)
   
     if (updateResponse.ok) {
       setIsAdded(true);

@@ -57,14 +57,10 @@ function HomePage() {
     async function fetchData() {
       const userDetails = await getUserInfo();
       const dbDetails = await checkUser(userDetails.data["sub"]);
-      console.log(JSON.stringify(userDetails));
       if (dbDetails.message.length > 0) {
-        console.log("User exists");
-        // console.log("menna db", dbDetails.message[0]["favourites"])
         setCart(dbDetails.message[0]["cart"]);
         return;
       }
-      console.log("DBDetails" + JSON.stringify(dbDetails));
       postUser(userDetails);
     }
 

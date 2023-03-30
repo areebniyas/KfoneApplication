@@ -50,7 +50,6 @@ function AdminPage() {
               }
           
               const userDetails = checkUser();
-              console.log(userDetails);
         } else {
             setIsAdmin(false);
         }

@@ -9,7 +9,6 @@ function DisplayComponent(cart) {
   const [data, setData] = useState(null);
   const { data: session, status } = useSession();
   const [addedToCart, setAddedToCart] = useState(false)
-  console.log("display cart", cart)
 
   useEffect(() => {
     async function fetchData() {
@@ -27,8 +26,6 @@ function DisplayComponent(cart) {
   if(!data) return null
     return (
       <>
-      {/* {localStorage.setItem("cart", JSON.stringify(cart))} */}
-      {/* {console.log(JSON.parse(cart))} */}
       <Box className='display-box' sx={{ margin:'50px', display: 'flex', overflowX: 'scroll', scrollBehavior: 'smooth' }}>
           {/* <Grid container spacing={2}> */}
           {data.message.map((product) => (

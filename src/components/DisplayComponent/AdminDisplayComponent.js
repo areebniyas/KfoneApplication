@@ -22,7 +22,6 @@ function AdminDisplayComponent() {
     async function fetchData() {
       const response = await fetch("http://localhost:3000/api/devices");
       const json = await response.json();
-      //   console.log("json:", json)
       setData(json);
     }
 

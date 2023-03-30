@@ -27,7 +27,6 @@ export default function Home() {
 // Export the `session` prop to use sessions with Server Side Rendering
 export async function getServerSideProps(context) {
   // Remove this console log if you dont want to expose tokens on server side.
-  console.log(await getSession(context))
   return {
     props: {
       session: await getSession(context),

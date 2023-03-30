@@ -19,14 +19,6 @@ import { useRouter } from 'next/router';
 
 function CartProduct({ product, isLoggedIn, cart }) {
   const addToCart = () => {
-    // const user = users[0];
-    // user.cart.push(product.Name);
-    // Convert the updated data to a JSON string
-    // const updatedUser = JSON.stringify(user);
-    // Save the updated data back to localStorage
-    // localStorage.setItem("user", updatedUser);
-    // console.log("user:", user);
-    console.log("I am here")
   };
 
   const handleClick = () => {
