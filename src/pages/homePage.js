@@ -68,8 +68,10 @@ function HomePage() {
       postUser(userDetails);
     }
 
-    // Add an if block, to run fetch data only if user is logged in.
-    fetchData();
+    if (session) {
+      fetchData();
+    }
+    
   }, []);
 
   const buttons = [
