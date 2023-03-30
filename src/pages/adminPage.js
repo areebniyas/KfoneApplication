@@ -8,7 +8,7 @@ import AdminDisplayComponent from '../components/DisplayComponent/AdminDisplayCo
 function AdminPage() {
     const [activeButton, setActiveButton] = useState('display');
     const { data: session, status } = useSession()
-    const {isAdmin, setIsAdmin} = useState();
+    const [isAdmin, setIsAdmin] = useState(true);
 
     const handleButtonClick = (buttonName) => {
         setActiveButton(buttonName);
@@ -42,6 +42,9 @@ function AdminPage() {
           const response = await fetch('http://localhost:3000/api/userInfo');
           const json = await response.json();
           console.log("JSON here " + JSON.stringify(json))
+          if(json.data["groups"].includes("admin")) {
+            setIsAdmin(true)
+          }
           return JSON.stringify(json);
         }
     

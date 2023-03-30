@@ -9,37 +9,21 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const Navbar = () => {
   const { data: session, status } = useSession()
-  const [id_token, setIDToken] = useState()
   const user = null;
   const [userName, setUserName] = useState()
 
   useEffect(() => {
     if (session) {
-      setIDToken(session.idToken)
-      console.log(session.idToken)
-      localStorage.setItem("access-token", session.accessToken);
-      console.log(localStorage.getItem("access-token"))
-  
-  
-      const res = fetch("https://api.asgardeo.io/t/areeb/oauth2/userinfo", {
-          method: 'get',
-          headers: new Headers({
-              "authorization": "Bearer " + session.accessToken
-          })
-      }).then(r => r.json().then(data => ({ status: r.status, body: data })))
-          .then(res => {
-            console.log(res)
-            console.log("SESSION USER SUB" + session.user.sub)
-            if(res.body["groups"].includes("admin")) {
-              console.log("YESSSSSSSSSSSSSSSSSSSSSS")
-            }
-            setUserName(res.body["email"])
-            toString(localStorage.setItem("userName", userName));
-            
-              // setContent(res)
-          }).catch(err => {
-              signOut({ callbackUrl: "/" })
-          })  
+      async function getUserInfo(){
+        const response = await fetch('http://localhost:3000/api/userInfo');
+        const json = await response.json();
+        
+        if (json) {
+          console.log(json.data.username)
+          setUserName(json.data.username)
+        }
+      }
+      getUserInfo();
   }
   
   }, [])
