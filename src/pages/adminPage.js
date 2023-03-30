@@ -27,6 +27,19 @@ function AdminPage() {
 
             }
 
+        if(session){
+            async function checkUser(){
+                const response = await fetch('http://localhost:3000/api/userInfo');
+                const json = await response.json();
+                if(json.data["groups"].includes("admin")) {
+                  setIsAdmin(true)
+                }
+                return JSON.stringify(json);
+              }
+          
+              const userDetails = checkUser();
+        } else {
+            setIsAdmin(false);
         }
             const userdetails = checkUser();
             console.log("USER DETAILS   " + userdetails);

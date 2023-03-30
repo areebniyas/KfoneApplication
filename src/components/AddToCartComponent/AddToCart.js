@@ -7,27 +7,18 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 function AddToCartComponent() {
-  // const [session, setSession] = useSession();
-  // console.log("AddtoCartComponent, ", cart)
   const { data: session, status } = useSession();
   const [cart, setCart] = useState([])
   const uid = session.user["sub"];
 
   useEffect(() => {
-    // const data = fetch("http://localhost:3000/api/");
-
-    // const res = fetch("http://localhost:3000/api/getUser");
-    // const json = res.json();
-    // console.log("json:", json);
     async function fetchData() {
       const updateResponse =  await fetch(
         `http://localhost:3000/api/getUserAttr?sub=${uid}&field=cart`
       );
 
-      console.log("await", updateResponse);
       const updateResult = await updateResponse.json();
       setCart(updateResult.message)
-      console.log("update", updateResult);
     }
     fetchData();
   }, []);
@@ -41,12 +32,8 @@ function AddToCartComponent() {
         scrollBehavior: "smooth",
       }}
     >
-      {/* <Grid container spacing={2}> */}
-      {console.log("here is the cart", cart)}
       {cart.map((productName) => {
-        console.log("product name", productName);
         const product = productsData.find((p) => p.Name === productName);
-        console.log("Product", product);
         return (
           <Box
             key={product.Name}
@@ -56,8 +43,6 @@ function AddToCartComponent() {
           </Box>
         );
       })}
-
-      {/* </Grid> */}
     </Box>
   );
 }
