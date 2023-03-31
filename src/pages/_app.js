@@ -1,6 +1,3 @@
-import HomePage from './homePage';
-// import Navbar from '../components/NavbarComponent/Navbar';
-// import Footer from '../components/FooterComponent/Footer';
 import Navbar from '../components/NavbarComponent/Navbar';
 import Footer from '../components/FooterComponent/Footer';
 import { SessionProvider } from "next-auth/react"
@@ -16,7 +13,6 @@ export default function App({ Component, pageProps }) {
     <>
     <SessionProvider session={pageProps?.session}>
       <Navbar isAuthenticated={isAuthenticated} />
-    {/* <HomePage/> */}
       <Component {...pageProps} />
       <Footer/>
     </SessionProvider>
