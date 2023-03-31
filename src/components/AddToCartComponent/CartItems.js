@@ -74,7 +74,7 @@ function CartProduct({ product, isLoggedIn, cart }) {
       Swal.fire({
         icon: "success",
         title: "Success",
-        text: `Product added to cart!`,
+        text: `Product purchased successfully!`,
       });
       return;
     }
