@@ -20,7 +20,10 @@ function ServiceProduct({ product, isLoggedIn, addedToCart }) {
   const { data: session, status } = useSession();
   const [isAdded, setIsAdded] = useState(false);
   const [cart, setCart] = useState([]);
-  const uid = session.user["sub"];
+  let uid = "";
+  if (session != null) {
+    uid = session.user["sub"];
+  }
 
   const checkCart = async () => {
     const updateResponse =  await fetch(

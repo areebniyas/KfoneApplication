@@ -9,7 +9,10 @@ import { useSession } from "next-auth/react";
 function AddToCartComponent() {
   const { data: session, status } = useSession();
   const [cart, setCart] = useState([])
-  const uid = session.user["sub"];
+  let uid = "";
+  if (session) {
+    uid = session.user.sub;
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -32,7 +35,9 @@ function AddToCartComponent() {
         scrollBehavior: "smooth",
       }}
     >
-      {cart.map((productName) => {
+
+      {
+        cart.map((productName) => {
         const product = productsData.find((p) => p.Name === productName);
         return (
           <Box
