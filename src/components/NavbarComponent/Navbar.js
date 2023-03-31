@@ -49,7 +49,7 @@ const Navbar = () => {
       }
       checkPoints();
   }
-  setLoyalty("Platinum")
+  setLoyalty(points)
 
   }, [])
   return (
