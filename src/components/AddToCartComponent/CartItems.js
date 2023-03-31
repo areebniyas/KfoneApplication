@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardMedia,
@@ -32,6 +32,7 @@ function CartProduct({ product, isLoggedIn, cart }) {
     uid = session.user["sub"];
   }
   const Swal = require("sweetalert2");
+
 
   const getPaymemtHistory = async() => {
     const updateResponse = await fetch(
